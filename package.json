@@ -1,0 +1,17 @@
+{
+  "name": "puppeteer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "consola": "^2.10.1",
+    "dotenv": "^8.2.0",
+    "moment": "^2.24.0",
+    "puppeteer": "1.19.0"
+  }
+}
