@@ -10,16 +10,18 @@ const login =  BASE_URL + '/#/user/login'
       headless: false,
       slowMo: 100,
       defaultViewport: {
-      	width: 1920 - 60, 
-      	height: 950
+      	width: 1920, 
+      	height: 1050
       },
-      // devtools: true
+      devtools: false
     })
 
     // await page.waitFor(500) // 等待500ms
 
     const page = await browser.newPage();
     await page.goto(login)
+    await page.evaluate(()=>document.documentElement.webkitRequestFullScreen())
+    
     await page.waitForSelector('.ant-form.ant-form-horizontal') //等待元素加载之后，否则获取不异步加载的元素
 
     const userInput = await page.$('#username')
@@ -72,7 +74,7 @@ const login =  BASE_URL + '/#/user/login'
 
       const step = await fr.$eval('#currentStep', el=> el.value) // 第几步骤
       
-      await fr.$$eval('[id*="in_"]', all=> all.map(el=> {
+      await fr.$$eval('.A4 [id*="in_"]', all=> all.map(el=> {
         // 这里的线程在浏览器里面
         if(/.*_ca_.*/g.test(el.id)) {
           // if(el.id === `in_date_ca_${step}`) { // 签日期
@@ -83,7 +85,7 @@ const login =  BASE_URL + '/#/user/login'
             // el.value = getDate()
           // }
         }else {
-          el.value = 1
+          el.value = 123
         }
       }), {step})
 
